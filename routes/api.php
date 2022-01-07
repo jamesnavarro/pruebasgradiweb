@@ -22,8 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('Login/', function (Request $request) {
 
-    $usuario = $request['usuario'];
-    $clave = md5($request['clave']);
+    $usuario = $request->usuario;
+    $clave = md5($request->clave);
         $consulta = User::where('usuario',$usuario)->where('password',$clave)->where('estado','1')->get()->first();
         
         if($consulta){
@@ -38,12 +38,12 @@ Route::post('Login/', function (Request $request) {
 });
 
 Route::get('Productos', function (Request $request) {
-    //$AUT = $request->header('Authorization');
+    $AUT = $request->header('Authorization');
     
-    //$consulta = User::where('token',$AUT)->get();
-    //if($consulta->count()==0){
-    //    return 'No tienes acceso a estos datos';
-    //}
+    $consulta = User::where('token',$AUT)->get();
+    if($consulta->count()==0){
+        return 'No tienes acceso a estos datos';
+    }
 
     $result= Productos::paginate(10);
     if($result){

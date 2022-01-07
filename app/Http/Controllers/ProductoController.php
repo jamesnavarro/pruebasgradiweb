@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 /**
 * @OA\Info(title="API Productos", version="1.0")
 *
-* @OA\Server(url="http://127.0.0.1:8000")
+* @OA\Server(url="https://gradiweb.ingeniosvirtuales.com/graviJames/public/")
 */
 class ProductoController extends Controller
 {
@@ -40,10 +40,44 @@ class ProductoController extends Controller
      *         required=false,
      *         @OA\Schema(type="number")
      *     ),
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         in="header",
+     *         description="Autorizacion header debe inicia sesion",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
     *     @OA\Response(
     *     
     *         response=200,
     *         description="Mostrar un producto seleccionado."
+    *     ),
+    *     @OA\Response(
+    *         response="default",
+    *         description="Ha ocurrido un error."
+    *     )
+    * )
+         * @OA\Post(
+    *     path="/api/Login",
+    *     summary="Inicio de sesion",
+    *     @OA\Parameter(
+     *         name="usuario",
+     *         in="query",
+     *         description="nombre del usuario",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+     * @OA\Parameter(
+     *         name="clave",
+     *         in="query",
+     *         description="clave del usuario",
+     *         required=false,
+     *         @OA\Schema(type="string")
+     *     ),
+    *     @OA\Response(
+    *     
+    *         response=200,
+    *         description="Mostrar utoken de Autorization"
     *     ),
     *     @OA\Response(
     *         response="default",

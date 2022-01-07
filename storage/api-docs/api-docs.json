@@ -1,0 +1,54 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Productos",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000"
+        }
+    ],
+    "paths": {
+        "/api/Productos": {
+            "get": {
+                "summary": "Mostrar productos",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los productos."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/Productos/{id}": {
+            "get": {
+                "summary": "Mostrar productos en especifico",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id del producto",
+                        "required": false,
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Mostrar un producto seleccionado."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
